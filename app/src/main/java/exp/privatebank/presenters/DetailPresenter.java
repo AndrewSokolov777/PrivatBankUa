@@ -42,7 +42,7 @@ public class DetailPresenter implements BasePresenter<DetailView> {
         mNetworkData.getRoute(currentPositionInString, destinationPositionInString, mRetrofit)
                 .subscribe(routeList ->{
                     mView.drawRoute(routeList, finish);
-                });
+        });
     }
 
     public void getCurrentLocation() throws IOException {

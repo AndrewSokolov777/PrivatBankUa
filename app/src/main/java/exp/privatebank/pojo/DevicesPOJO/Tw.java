@@ -36,6 +36,20 @@ public class Tw implements Parcelable
     @SerializedName("hol")
     @Expose
     private String hol;
+
+    public Tw(String sun, String tue, String wed,  String thu, String fri, String sat, String mon) {
+        this.mon = mon;
+        this.tue = tue;
+        this.wed = wed;
+        this.thu = thu;
+        this.fri = fri;
+        this.sat = sat;
+        this.sun = sun;
+    }
+
+    public Tw() {
+    }
+
     public final static Creator<Tw> CREATOR = new Creator<Tw>() {
 
 
@@ -59,8 +73,7 @@ public class Tw implements Parcelable
             return (new Tw[size]);
         }
 
-    }
-    ;
+    };
 
     public String getMon() {
         return mon;

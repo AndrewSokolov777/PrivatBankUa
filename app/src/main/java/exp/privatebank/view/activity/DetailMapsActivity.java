@@ -1,6 +1,7 @@
 package exp.privatebank.view.activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import exp.privatebank.common.BaseActivity;
 import exp.privatebank.di.AppComponent;
 import exp.privatebank.model.BankDevice;
 import exp.privatebank.model.NetworkData;
+import exp.privatebank.pojo.DevicesPOJO.Tw;
 import exp.privatebank.storage.DevicesStorage;
 import exp.privatebank.pojo.DevicesPOJO.Device;
 import exp.privatebank.pojo.RoutePojo.Route_;
@@ -56,7 +58,6 @@ public class DetailMapsActivity extends BaseActivity implements OnMapReadyCallba
         mapFragment.getMapAsync(this);
 
         mInfoDialogFragment = new InfoDialogFragment();
-        mInfoDialogFragment.setListener(new InfoDetailListener());
 
         if(savedInstanceState!= null) {
             mCurrentLocation = savedInstanceState.getParcelable(CURRENT_LOCATION);
@@ -178,7 +179,9 @@ public class DetailMapsActivity extends BaseActivity implements OnMapReadyCallba
                             && Double.parseDouble(item.getLongitude()) == pos.longitude) {
                         mTargetDevice = new Device(item.getType(), item.getCityRu(), item.getCityUa(),
                                 item.getCityEn(), item.getAddressRu(), item.getAddressUa(), item.getAddressEn(),
-                                item.getPlaceRu(), item.getPlaceUa(), item.getLatitude(), item.getLongitude(), null);
+                                item.getPlaceRu(), item.getPlaceUa(), item.getLatitude(), item.getLongitude(),
+                                new Tw(item.getMon(), item.getTue(), item.getWed(), item.getThu(),
+                                        item.getFri(), item.getSat(), item.getSun()));
                         showDialogInfo();
                         break;
                     }
@@ -231,20 +234,6 @@ public class DetailMapsActivity extends BaseActivity implements OnMapReadyCallba
             mMap.animateCamera(CameraUpdateFactory.zoomTo(17), 2000, null);
     }
 
-    public class InfoDetailListener {
-        public void routeConfirm(Device device) throws IOException {
-            if(mCurrentLocation == null){
-                showErrorMsg(getResources().getString(R.string.no_current_position));
-
-            }else if(!NetworkData.isNetworkAvailable(DetailMapsActivity.this)){
-                    showErrorMsg(getResources().getString(R.string.no_internet_connection));
-            }else {
-                mTargetDevice = device;
-                mPresenter.getRoute(mCurrentLocation, mTargetDevice);
-            }
-        }
-    }
-
     public void showErrorMsg(String errorMsg) {
         Toast.makeText(DetailMapsActivity.this,
                 errorMsg, Toast.LENGTH_LONG).show();
@@ -255,5 +244,26 @@ public class DetailMapsActivity extends BaseActivity implements OnMapReadyCallba
         super.onSaveInstanceState(outState);
         outState.putParcelable(TARGET_DEVICE, mTargetDevice);
         outState.putParcelable(CURRENT_LOCATION, mCurrentLocation);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == 1){
+            if(requestCode == InfoDialogFragment.DEVICE_CONFIRM){
+                if(mCurrentLocation == null){
+                    showErrorMsg(getResources().getString(R.string.no_current_position));
+
+                }else if(!NetworkData.isNetworkAvailable(DetailMapsActivity.this)){
+                    showErrorMsg(getResources().getString(R.string.no_internet_connection));
+                }else {
+                    try {
+                        mPresenter.getRoute(mCurrentLocation, mTargetDevice);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 }

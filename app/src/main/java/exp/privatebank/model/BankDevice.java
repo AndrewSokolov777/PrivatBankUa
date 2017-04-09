@@ -25,10 +25,21 @@ public class BankDevice {
 
     String latitude;
     String longitude;
-    @Generated(hash = 917671324)
+
+    String mon;
+    String tue;
+    String wed;
+    String thu;
+    String fri;
+    String sat;
+    String sun;
+
+    @Generated(hash = 1711423308)
     public BankDevice(Long id, String type, String cityEn, String cityRu,
             String cityUa, String addressEn, String addressRu, String addressUa,
-            String placeRu, String placeUa, String latitude, String longitude) {
+            String placeRu, String placeUa, String latitude, String longitude,
+            String mon, String tue, String wed, String thu, String fri, String sat,
+            String sun) {
         this.id = id;
         this.type = type;
         this.cityEn = cityEn;
@@ -41,6 +52,13 @@ public class BankDevice {
         this.placeUa = placeUa;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.mon = mon;
+        this.tue = tue;
+        this.wed = wed;
+        this.thu = thu;
+        this.fri = fri;
+        this.sat = sat;
+        this.sun = sun;
     }
     @Generated(hash = 1298310047)
     public BankDevice() {
@@ -116,5 +134,47 @@ public class BankDevice {
     }
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+    public String getMon() {
+        return this.mon;
+    }
+    public void setMon(String mon) {
+        this.mon = mon;
+    }
+    public String getTue() {
+        return this.tue;
+    }
+    public void setTue(String tue) {
+        this.tue = tue;
+    }
+    public String getWed() {
+        return this.wed;
+    }
+    public void setWed(String wed) {
+        this.wed = wed;
+    }
+    public String getThu() {
+        return this.thu;
+    }
+    public void setThu(String thu) {
+        this.thu = thu;
+    }
+    public String getFri() {
+        return this.fri;
+    }
+    public void setFri(String fri) {
+        this.fri = fri;
+    }
+    public String getSat() {
+        return this.sat;
+    }
+    public void setSat(String sat) {
+        this.sat = sat;
+    }
+    public String getSun() {
+        return this.sun;
+    }
+    public void setSun(String sun) {
+        this.sun = sun;
     }
 }

@@ -50,7 +50,10 @@ public class DbHelper {
                     insertList.add(new BankDevice(null,
                             item.getType(), item.getCityEN(), item.getCityRU(), item.getCityUA(),
                             item.getFullAddressEn(), item.getFullAddressRu(), item.getFullAddressUa(),
-                            item.getPlaceRu(), item.getPlaceUa(), item.getLatitude(), item.getLongitude()));
+                            item.getPlaceRu(), item.getPlaceUa(), item.getLatitude(), item.getLongitude(),
+                            item.getTw().getMon(), item.getTw().getTue(), item.getTw().getWed(),
+                            item.getTw().getTue(), item.getTw().getFri(), item.getTw().getSat(),
+                            item.getTw().getSun()));
                 }
                 bankdeviceDao.insertInTx(insertList);
                 subscriber.onNext(true);
