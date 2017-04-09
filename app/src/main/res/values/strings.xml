@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">ПриватБанк</string>
+
+    <string name="title_activity_main">ПриватБанк</string>
+    <string name="title_activity_detail_maps">Выбирай !</string>
+    <string name="title_activity_maps">Выбирай !</string>
+
+    <string name="search_button">Найти</string>
+    <string name="write_city">Напишите имя города на русском</string>
+
+    <string name="device_type">Тип:</string>
+    <string name="device_city">Город:</string>
+    <string name="device_place">Место:</string>
+    <string name="device_address">Адрес:</string>
+
+    <string name="way_ask">Проложить путь ?</string>
+
+    <string name="cancel">Отменить</string>
+    <string name="yes">Да</string>
+
+    <string name="current_position_title">Вы тут</string>
+    <string name="destination_title">Your target</string>
+
+    <string name="gps_not_enable_warning">Включите GPS</string>
+
+    <string name="no_data">Данных нет. Включите инетернет соединение</string>
+    <string name="incorrect_input">Что-то пошло не так. Проверьте корректность ввода</string>
+    <string name="no_current_position">Нет текущей позиции</string>
+    <string name="no_internet_connection">Нет интернет соединения</string>
+    <string name="something_wrong">Что-то пошло не так. Попробуйте позже</string>
+</resources>
